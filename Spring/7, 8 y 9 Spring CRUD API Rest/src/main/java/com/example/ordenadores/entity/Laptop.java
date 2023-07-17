@@ -1,7 +1,7 @@
 package com.example.ordenadores.entity;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Laptop {
