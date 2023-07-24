@@ -1,0 +1,6 @@
+com\example\ordenadores\config\WebSecurityConfig.class
+com\example\ordenadores\entity\Laptop.class
+com\example\ordenadores\controller\LaptopController.class
+com\example\ordenadores\repository\LaptopRepository.class
+com\example\ordenadores\controller\HelloController.class
+com\example\ordenadores\OrdenadoresApplication.class
