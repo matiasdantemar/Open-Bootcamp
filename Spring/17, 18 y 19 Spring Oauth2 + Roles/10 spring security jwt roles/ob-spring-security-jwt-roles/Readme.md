@@ -1,0 +1,2 @@
+ se puede crear un metodo que añada metodos a un usuario, cuando tenemos una pantalla o una consola de administracion donde el equipo
+ de soporte entra con acceso de administrador y puede darle determinado roles a nuevos usuarios.

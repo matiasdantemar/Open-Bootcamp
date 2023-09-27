@@ -54,7 +54,7 @@ deleteAll()
 
 Ejercicio 5
 
-Implementar swagger sobre el API REST de Laptop y verificar que funciona en la URL: http://localhost:8081/swagger-ui/
+Implementar swagger sobre el API REST de Laptop y verificar que funciona en la URL: http://localhost:8080/swagger-ui/index.html
 
 Ejercicio 6
 
