@@ -34,7 +34,7 @@ public class  UserController {
 
     //LOGEARSE, permite autenticarse
     @PostMapping("/authenticate")
-    public ResponseEntity<?> generateToken(@RequestBody LoginUser loginUser) throws AuthenticationException { // recibe un objeto LoginUser que binda usuario y contraseña
+    public ResponseEntity<?> generateToken(@RequestBody LoginUser loginUser) throws AuthenticationException { // recibe un objeto LoginUser que brinda usuario y contraseña
 
         // utiliza la clase de spring authenticationManager para poder cargar esos datos, que le sirvan a spring para hacer la autenticacion, para verificar que ese usuario existe
         final Authentication authentication = authenticationManager.authenticate(

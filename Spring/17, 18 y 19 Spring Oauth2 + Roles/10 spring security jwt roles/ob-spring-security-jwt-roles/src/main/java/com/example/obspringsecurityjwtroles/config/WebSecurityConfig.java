@@ -44,6 +44,7 @@ public class WebSecurityConfig {
 //    @Autowired
 //    TokenProvider jwtTokenUtil;
 
+    @Autowired
     AuthenticationManager authenticationManager;
 
 
@@ -66,13 +67,14 @@ public class WebSecurityConfig {
     @Bean  //este ya lo hice cuando empece seguridad por primera vez, solo que incorpore mas cosas
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception { //va a tener toda la cadena de filtros que se va a ir ejecutando
         http
-                .csrf(AbstractHttpConfigurer::disable) // Cross-Site Request Forgery CSRF
+                .csrf(AbstractHttpConfigurer::disable) // Cross-Site Request Forgery CSRF, SE lo marca como disable ya que no trabajamos con coockies, la seguridad es con JWT
                 .cors(AbstractHttpConfigurer::disable) // CORS (Cross-origin resource sharing)
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/users/authenticate", "/users/register").permitAll()
                                 .anyRequest().authenticated()) //el resto tiene que estar autenticada
 
                 .exceptionHandling(exception -> exception //permite agregar "objetos" authenticationEntryPoint, accessDeniedHandler, que sobreescriben la gestion de errores
+                        //a nivel de seguridad tengo estas dos excepciones, gestionan la autenticacion y autorizacion
                         .authenticationEntryPoint(unauthorizedEntryPoint) //para gestion de excepciones, unauthorizedEntryPoint pertenece a una clase mia
                         .accessDeniedHandler(accessDeniedHandler)) //configuramos como se van a gestionar las exepciones, se le puede poner anotacion
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // para indicar que no quiero que no haya sesion
@@ -96,7 +98,6 @@ public class WebSecurityConfig {
 //                        .requestMatchers("/users/authenticate", "/users/register").permitAll()
 //                        .anyRequest().authenticated());
 //
-//        http.authenticationProvider(authenticationProvider());
 //        http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 //
 //        return http.build();
