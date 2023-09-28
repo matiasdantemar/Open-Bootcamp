@@ -3,6 +3,7 @@ package com.example.obspringsecuritycsrf.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -40,17 +41,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/hola").permitAll()
                         .anyRequest().authenticated()) //el resto tiene que estar autenticada
-                .formLogin(withDefaults());
-//                .formLogin(form -> form //agrego formulario
-//                        .loginPage("/login")
-//                        .permitAll())
-//                .httpBasic(Customizer.withDefaults())//solo va a ser para usuario y contraseña
+//                .formLogin(withDefaults());
+                .formLogin(form -> form //agrego formulario
+                        .loginPage("/login")
+                        .permitAll())
+                .httpBasic(Customizer.withDefaults());//solo va a ser para usuario y contraseña
 
         return http.build();
     }
 
-    @Bean
-    public BCryptPasswordEncoder encoder(){
-        return new BCryptPasswordEncoder();
-    }
+
 }

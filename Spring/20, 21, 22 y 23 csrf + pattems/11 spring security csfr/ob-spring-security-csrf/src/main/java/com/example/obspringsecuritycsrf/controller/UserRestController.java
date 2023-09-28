@@ -9,10 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserRestController {
 
-
-    @GetMapping("/hola")
+    //URLS Permitidas
+    @GetMapping("/api/hola")
     public String hola(){
         return "hola mundo";
+    }
+
+    //URLS Autenticadas
+    @GetMapping("/api/adios")
+    public String adios(){
+        return "adios mundo";
     }
 
     @PostMapping("/users")
