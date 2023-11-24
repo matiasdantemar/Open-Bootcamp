@@ -80,7 +80,12 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // para indicar que no quiero que no haya sesion
 
 //        http.authenticationProvider(authenticationProvider());
+
+        //agrega filtro de seguridad ANTES
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        //DESPUES de que se ejcute un metodo
+        //http.addFilterAfter(..)
+
 
         return http.build();
     }

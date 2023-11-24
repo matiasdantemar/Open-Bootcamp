@@ -11,14 +11,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import jakarta.annotation.Resource;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.annotation.Resource;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//hereda un tipo de filtro que es OncePerRequestFilter, cuenta con un solo metodo doFilterInternal
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Value("${jwt.header.string}")
@@ -33,7 +32,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private TokenProvider jwtTokenUtil;
 
-    // se encarga de filtrar, comprobar si el token era valido o no, para poder pasar, si es valido se carga en el contexto de persistencia
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         String header = req.getHeader(HEADER_STRING);
@@ -65,7 +63,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
-        //doFilter llama al siguiente filtro en la cadena, otros filtros se encargaran de verificar tal cookies u otras cosas
         chain.doFilter(req, res);
     }
 }
